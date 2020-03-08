@@ -3,8 +3,10 @@ package com.example.todoapplication.controller;
 import com.example.todoapplication.exception.UserNotFoundException;
 import com.example.todoapplication.model.User;
 import com.example.todoapplication.service.UserService;
+import com.sun.xml.internal.ws.api.pipe.ContentType;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleContextResolver;
@@ -26,7 +28,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<User> retrieveAllUsers() {
         return this.userService.getUsers();
     }
