@@ -3,8 +3,11 @@ package com.example.todoapplication.controller;
 import com.example.todoapplication.exception.UserNotFoundException;
 import com.example.todoapplication.model.User;
 import com.example.todoapplication.service.UserService;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -15,9 +18,11 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    private MessageSource messageSource;
     private UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(MessageSource messageSource, UserService userService) {
+        this.messageSource = messageSource;
         this.userService = userService;
     }
 
@@ -47,6 +52,11 @@ public class UserController {
         List<User> users = userService.getUsers();
         boolean removed = users.removeIf(user -> user.getId().equals(id));
         if (!removed) throw new UserNotFoundException("id " + id);
+    }
+
+    @GetMapping("/greet")
+    public String greet() {
+        return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
     }
 
 }
