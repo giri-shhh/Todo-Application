@@ -3,6 +3,7 @@ package com.example.todoapplication.controller;
 import com.example.todoapplication.exception.UserNotFoundException;
 import com.example.todoapplication.model.Product;
 import com.example.todoapplication.model.User;
+import com.example.todoapplication.orchestration.ProductServiceProxy;
 import com.example.todoapplication.respository.UserRepository;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -24,10 +25,12 @@ public class UserController {
 
     private MessageSource messageSource;
     private UserRepository userRepository;
+    private ProductServiceProxy productServiceProxy;
 
-    public UserController(MessageSource messageSource, UserRepository userRepository) {
+    public UserController(MessageSource messageSource, UserRepository userRepository, ProductServiceProxy productServiceProxy) {
         this.messageSource = messageSource;
         this.userRepository = userRepository;
+        this.productServiceProxy = productServiceProxy;
     }
 
     @GetMapping
@@ -64,7 +67,6 @@ public class UserController {
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getProducts() {
-        return new RestTemplate().exchange("http://localhost:8081/products", HttpMethod.GET, null, new ParameterizedTypeReference<List<Product>>() {
-        });
+        return productServiceProxy.getProducts();
     }
 }
