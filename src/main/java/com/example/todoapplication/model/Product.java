@@ -4,6 +4,7 @@ public class Product {
 
     private Long id;
     private String name;
+    private String port;
 
     public Product() {
     }
@@ -31,5 +32,13 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 }
