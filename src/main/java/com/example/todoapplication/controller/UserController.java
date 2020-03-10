@@ -1,12 +1,16 @@
 package com.example.todoapplication.controller;
 
 import com.example.todoapplication.exception.UserNotFoundException;
+import com.example.todoapplication.model.Product;
 import com.example.todoapplication.model.User;
 import com.example.todoapplication.respository.UserRepository;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -58,4 +62,9 @@ public class UserController {
         return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
     }
 
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getProducts() {
+        return new RestTemplate().exchange("http://localhost:8081/products", HttpMethod.GET, null, new ParameterizedTypeReference<List<Product>>() {
+        });
+    }
 }

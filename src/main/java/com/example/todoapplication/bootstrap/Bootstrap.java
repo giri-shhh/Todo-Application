@@ -1,13 +1,11 @@
 package com.example.todoapplication.bootstrap;
 
-import com.example.todoapplication.model.Todo;
 import com.example.todoapplication.model.User;
 import com.example.todoapplication.respository.TodoRepository;
 import com.example.todoapplication.respository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
