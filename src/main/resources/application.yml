@@ -1,3 +1,8 @@
 spring:
+  application:
+    name: Todo Application
   messages:
     basename: messages
+  h2:
+    console:
+      enabled: true

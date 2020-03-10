@@ -3,9 +3,12 @@ package com.example.todoapplication.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -19,6 +22,9 @@ public class User {
 
     @Past
     private LocalDate dateOfBirth;
+
+    @OneToMany(mappedBy = "user")
+    private List<Todo> todos = new ArrayList<>();
 
     public User() {
     }
@@ -64,5 +70,13 @@ public class User {
                 ", name='" + name + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 }

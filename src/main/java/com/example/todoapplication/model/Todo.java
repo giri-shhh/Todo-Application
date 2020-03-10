@@ -1,8 +1,6 @@
 package com.example.todoapplication.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,6 +11,9 @@ public class Todo {
     private Long id;
     private LocalDate date;
     private String task;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public Todo() {
     }
@@ -53,5 +54,13 @@ public class Todo {
                 ", date=" + date +
                 ", task='" + task + '\'' +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

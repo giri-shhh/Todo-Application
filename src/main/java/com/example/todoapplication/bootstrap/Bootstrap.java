@@ -7,6 +7,8 @@ import com.example.todoapplication.respository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -24,8 +26,7 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        Stream.of("Girish", "Harish").map(User::new).forEach(userRepository::save);
+        userRepository.saveAll(Stream.of("Girish", "Harish").map(User::new).collect(Collectors.toList()));
 
-        Stream.of("Wakeup", "sleep").map(Todo::new).forEach(todoRepository::save);
     }
 }
