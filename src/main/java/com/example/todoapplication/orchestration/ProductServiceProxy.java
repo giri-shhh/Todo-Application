@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name= "product-service")
-@RibbonClient(name= "product-service")
+@FeignClient(name = "todo-api-gateway")
+@RibbonClient(name = "product-service")
 public interface ProductServiceProxy {
-    @GetMapping("/products")
+    @GetMapping("product-service/products")
     ResponseEntity<List<Product>> getProducts();
 
 }
