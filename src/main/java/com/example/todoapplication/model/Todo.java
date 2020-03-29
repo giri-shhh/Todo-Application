@@ -47,6 +47,14 @@ public class Todo {
         this.task = task;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
@@ -54,13 +62,5 @@ public class Todo {
                 ", date=" + date +
                 ", task='" + task + '\'' +
                 '}';
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
