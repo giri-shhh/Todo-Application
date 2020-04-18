@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties("todo-config")
+@ConfigurationProperties("todo-application")
 public class Configuration {
 
     private int minimum;

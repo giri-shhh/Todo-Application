@@ -1,14 +1,25 @@
 spring:
   application:
     name: todo-application
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: todo-central-config
+        fast-fail: true
+    retry:
+      max-attempts: 10000
+      max-interval: 1000
   messages:
     basename: messages
-  h2:
-    console:
-      enabled: true
+
 server:
   port: 8080
+
 eureka:
+  instance:
+    hostname: todo-service-registry
+    prefer-ip-address: true
   client:
     service-url:
       default-zone: ${EUREKA_SERVER:http://localhost:8761/eureka}
@@ -20,9 +31,11 @@ feign:
       default:
         connectTimeout: 160000000
         readTimeout: 160000000
+
 ribbon:
   ConnectTimeout: 120000
   ReadTimeout: 120000
+
 hystrix:
   command:
     default:
