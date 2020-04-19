@@ -9,8 +9,6 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://todo-service-registry:8761/eureka
-        healthcheck:
-            enabled: true
 
 feign:
     client:
