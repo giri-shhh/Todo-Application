@@ -1,29 +1,31 @@
 package com.example.todoapplication.controller;
 
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import com.example.todoapplication.exception.UserNotFoundException;
 import com.example.todoapplication.model.Product;
 import com.example.todoapplication.model.User;
 import com.example.todoapplication.orchestration.ProductServiceProxy;
 import com.example.todoapplication.respository.UserRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.sun.org.apache.regexp.internal.RE;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.validation.Valid;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -69,6 +71,11 @@ public class UserController {
     @GetMapping("/greet")
     public String greet() {
         return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello my programmers";
     }
 
     @GetMapping("/products")
