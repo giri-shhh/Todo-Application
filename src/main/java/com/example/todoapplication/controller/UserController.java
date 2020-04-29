@@ -85,7 +85,6 @@ public class UserController {
     }
 
     public ResponseEntity<List<Product>> getProductsFallback() {
-        ArrayList<Product> emptyProducts = new ArrayList<>();
-        return new ResponseEntity<>(emptyProducts, HttpStatus.OK);
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
     }
 }

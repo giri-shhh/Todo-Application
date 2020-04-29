@@ -14,7 +14,7 @@ public class ConfigurationController {
         this.configuration = configuration;
     }
 
-    @GetMapping("todo-config")
+    @GetMapping("/todo/config")
     public TodoConfiguration retrieveTodoConfiguration() {
         return new TodoConfiguration(configuration.getMinimum(), configuration.getMaximum());
     }

@@ -1,19 +1,18 @@
 package com.example.todoapplication.controller;
 
-import java.util.List;
-
 import com.example.todoapplication.exception.UserNotFoundException;
 import com.example.todoapplication.model.Todo;
 import com.example.todoapplication.respository.TodoRepository;
 import com.example.todoapplication.respository.UserRepository;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("todos/{userId}")
+@RequestMapping("/todo/{userId}")
 public class TodoController {
 
     private TodoRepository todoRepository;
