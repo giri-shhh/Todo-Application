@@ -9,10 +9,10 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
 @EnableFeignClients
-@EnableDiscoveryClient
 @EnableHystrix
+@EnableDiscoveryClient
+@SpringBootApplication
 @EnableHystrixDashboard
 public class TodoApplication {
 

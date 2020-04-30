@@ -43,20 +43,19 @@ public class UserController {
 
     @GetMapping
     public List<User> retrieveAllUsers() {
-        return this.userRepository.findAll();
+        return userRepository.findAll();
     }
 
     @PostMapping
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-        User savedUser = this.userRepository.save(user);
-
+        User savedUser = userRepository.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
-        Optional<User> user = this.userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id);
         if (!user.isPresent()) throw new UserNotFoundException(" - id" + id);
         return user.get();
     }
@@ -72,12 +71,7 @@ public class UserController {
     public String greet() {
         return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
     }
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello my programmers";
-    }
-
+    
     @GetMapping("/products")
     @HystrixCommand(fallbackMethod = "getProductsFallback")
     public ResponseEntity<List<Product>> getProducts() {
